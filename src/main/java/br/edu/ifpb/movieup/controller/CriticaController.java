@@ -28,10 +28,6 @@ public class CriticaController {
         return this.criticaService.inserirOuAtualizar(critica);
     }
 
-    @PutMapping("/criticas/{id}")
-    public Critica atualizarCritica(@RequestBody Critica critica){
-        return this.criticaService.inserirOuAtualizar(critica);
-    }
 
     @DeleteMapping("/criticas/{id}")
     public void apagarCritica(@PathVariable("id") Long id) {
