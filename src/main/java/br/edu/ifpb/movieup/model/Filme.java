@@ -11,7 +11,7 @@ public class Filme {
     private Long id;
     private String titulo;
     private String imagem;
-    private LocalDate dataLancamento;
+    private Integer dataLancamento;
     private String sinopse;
     private String genero;
     private String diretor;
@@ -30,20 +30,21 @@ public class Filme {
         this.titulo = titulo;
     }
 
+    public Integer getDataLancamento() {
+        return dataLancamento;
+    }
+
+    public void setDataLancamento(Integer dataLancamento) {
+        this.dataLancamento = dataLancamento;
+    }
+
+
     public String getImagem() {
         return imagem;
     }
 
     public void setImagem(String imagem) {
         this.imagem = imagem;
-    }
-
-    public LocalDate getDataLancamento() {
-        return dataLancamento;
-    }
-
-    public void setDataLancamento(LocalDate dataLancamento) {
-        this.dataLancamento = dataLancamento;
     }
 
     public String getSinopse() {

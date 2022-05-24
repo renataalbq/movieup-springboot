@@ -11,7 +11,7 @@ public class Serie {
     private Long id;
     private String titulo;
     private String imagem;
-    private LocalDate dataLancamento;
+    private Integer dataLancamento;
     private String sinopse;
     private String genero;
     private String diretor;
@@ -38,11 +38,11 @@ public class Serie {
         this.imagem = imagem;
     }
 
-    public LocalDate getDataLancamento() {
+    public Integer getDataLancamento() {
         return dataLancamento;
     }
 
-    public void setDataLancamento(LocalDate dataLancamento) {
+    public void setDataLancamento(Integer dataLancamento) {
         this.dataLancamento = dataLancamento;
     }
 
