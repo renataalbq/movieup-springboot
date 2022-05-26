@@ -18,9 +18,17 @@ public class SerieService {
         return this. serieRepository.findAll();
     }
 
-    public Serie getSeriePorId(Long idSerie) {
-        return this. serieRepository.findById(idSerie).orElse(null);
+    public List<Serie> buscarEmAlta(String opcao) {
+        return this.serieRepository.buscarEmAlta(opcao);
     }
+
+    public List<Serie> buscarVencedoras(String opcao) {
+        return this.serieRepository.buscarVencedoras(opcao);
+    }
+    public List<Serie> buscarLancamentos(String opcao) {
+        return this.serieRepository.buscarLancamentos(opcao);
+    }
+
 
 }
 

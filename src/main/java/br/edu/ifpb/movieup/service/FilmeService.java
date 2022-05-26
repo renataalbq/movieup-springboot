@@ -18,9 +18,24 @@ public class FilmeService {
         return this.filmeRepository.findAll();
     }
 
-    public Filme getFilmePorId(Long idFilme) {
-        return this.filmeRepository.findById(idFilme).orElse(null);
+    public List<Filme> buscarEmAlta(String opcao) {
+        return this.filmeRepository.buscarEmAlta(opcao);
     }
 
+    public List<Filme> buscarFavoritos(String opcao) {
+        return this.filmeRepository.buscarFavoritos(opcao);
+    }
+
+    public List<Filme> buscarAclamados(String opcao) {
+        return this.filmeRepository.buscarAclamados(opcao);
+    }
+
+    public List<Filme> buscarEsperados(String opcao) {
+        return this.filmeRepository.buscarEsperados(opcao);
+    }
+
+    public List<Filme> buscarFavSemana(String opcao) {
+        return this.filmeRepository.buscarFavSemana(opcao);
+    }
 }
 
