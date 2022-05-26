@@ -1,6 +1,7 @@
 package br.edu.ifpb.movieup.controller;
 
 import br.edu.ifpb.movieup.model.Critica;
+import br.edu.ifpb.movieup.model.Filme;
 import br.edu.ifpb.movieup.service.CriticaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,16 +19,10 @@ public class CriticaController {
         return this.criticaService.getCriticas();
     }
 
-    @GetMapping("/criticas/{id}")
-    public Critica getCriticaPorId(@PathVariable("id") Long idCritica) {
-        return this.criticaService.getCriticaPorId(idCritica);
-    }
-
     @PostMapping("/criticas")
-    public Critica inserirCritica(@RequestBody Critica critica){
-        return this.criticaService.inserirOuAtualizar(critica);
+    public Critica inserirCritica(@RequestBody Critica critica, Filme filme){
+        return this.criticaService.inserirOuAtualizar(critica, filme);
     }
-
 
     @DeleteMapping("/criticas/{id}")
     public void apagarCritica(@PathVariable("id") Long id) {
