@@ -1,7 +1,6 @@
 package br.edu.ifpb.movieup.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "tb_filme")
@@ -17,6 +16,12 @@ public class Filme {
     private String diretor;
     private String atores;
     private Integer duracao;
+    private String emalta;
+    private String favoritos;
+    private String aclamados;
+    private String esperados;
+    private String favsemana;
+
 
     public Long getId() {
         return id;
@@ -37,7 +42,6 @@ public class Filme {
     public void setDataLancamento(Integer dataLancamento) {
         this.dataLancamento = dataLancamento;
     }
-
 
     public String getImagem() {
         return imagem;
@@ -86,4 +90,19 @@ public class Filme {
     public void setDuracao(Integer duracao) {
         this.duracao = duracao;
     }
+
+    public String getEmalta() { return emalta;}
+    public void setEmalta(String emalta) { this.emalta = emalta; }
+
+    public String getFavoritos() { return favoritos;}
+    public void setFavoritos(String favoritos) { this.favoritos = favoritos; }
+
+    public String getAclamados() { return aclamados;}
+    public void setAclamados(String aclamados) { this.aclamados = aclamados; }
+
+    public String getEsperados() { return esperados;}
+    public void setEsperados(String esperados) { this.esperados = esperados; }
+    public String getFavsemana() { return favsemana;}
+    public void setFavsemana(String favsemana) { this.favsemana = favsemana; }
+
 }

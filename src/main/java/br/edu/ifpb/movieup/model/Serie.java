@@ -18,6 +18,10 @@ public class Serie {
     private String atores;
     private Integer temporadas;
 
+    private String emalta;
+    private String vencedoras;
+    private String lancamentos;
+
     public Long getId() {
         return id;
     }
@@ -85,4 +89,13 @@ public class Serie {
     public void setTemporadas(Integer temporadas) {
         this.temporadas = temporadas;
     }
+
+    public String getEmalta() { return emalta;}
+    public void setEmalta(String emalta) { this.emalta = emalta; }
+
+    public String getVencedoras() { return vencedoras;}
+    public void setVencedoras(String vencedoras) { this.vencedoras = vencedoras; }
+
+    public String getLancamentos() { return lancamentos;}
+    public void setALancamentos(String lancamentos) { this.lancamentos = lancamentos; }
 }
