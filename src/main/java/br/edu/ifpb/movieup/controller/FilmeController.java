@@ -15,10 +15,14 @@ public class FilmeController {
     @Autowired
     private FilmeService filmeService;
 
-
     @GetMapping("/filmes")
     public List<Filme> getFilmes() {
         return this.filmeService.getFilmes();
+    }
+
+    @GetMapping("/detalhes")
+    public List<Filme> getDetalhes() {
+        return this.filmeService.getDetalhes();
     }
 
     @GetMapping("/filmes/emalta")
