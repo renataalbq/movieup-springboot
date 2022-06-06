@@ -11,12 +11,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/filmes")
 public class FilmeController {
 
     @Autowired
     private FilmeService filmeService;
 
-    @GetMapping("/filmes")
+    @GetMapping
     public List<Filme> getFilmes() {
         return this.filmeService.getFilmes();
     }
@@ -26,34 +27,35 @@ public class FilmeController {
         return this.filmeService.getDetalhes();
     }
 
-    @GetMapping("/filmes/id")
-    public  Optional<Filme> getById(Long id) {
-        return this.filmeService.findById(id);
+    @GetMapping("/{id}")
+    public Filme getFilmeById(@PathVariable("id") Long id) {
+
+        return this.filmeService.getFilmeById(id);
     }
 
-    @GetMapping("/filmes/emalta")
+    @GetMapping("/emalta")
     public ResponseEntity<List<Filme>> buscarEmAlta(String opcao){
         List <Filme> filme = filmeService.buscarEmAlta(opcao);
         return new ResponseEntity<List<Filme>>(filme, HttpStatus.OK);
     }
 
-    @GetMapping("/filmes/favoritos")
+    @GetMapping("/favoritos")
     public ResponseEntity<List<Filme>> buscarFavoritos(String opcao){
         List <Filme> filme = filmeService.buscarFavoritos(opcao);
         return new ResponseEntity<List<Filme>>(filme, HttpStatus.OK);
     }
-    @GetMapping("/filmes/aclamados")
+    @GetMapping("/aclamados")
     public ResponseEntity<List<Filme>> buscarAclamados(String opcao){
         List <Filme> filme = filmeService.buscarAclamados(opcao);
         return new ResponseEntity<List<Filme>>(filme, HttpStatus.OK);
     }
-    @GetMapping("/filmes/esperados")
+    @GetMapping("/esperados")
     public ResponseEntity<List<Filme>> buscarEsperados(String opcao){
         List <Filme> filme = filmeService.buscarEsperados(opcao);
         return new ResponseEntity<List<Filme>>(filme, HttpStatus.OK);
     }
 
-    @GetMapping("/filmes/favsemana")
+    @GetMapping("/favsemana")
     public ResponseEntity<List<Filme>> buscarFavSemana(String opcao){
         List <Filme> filme = filmeService.buscarFavSemana(opcao);
         return new ResponseEntity<List<Filme>>(filme, HttpStatus.OK);

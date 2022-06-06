@@ -12,17 +12,16 @@ import java.util.Optional;
 @Service
 public class FilmeService {
 
-    @Autowired
-    private FilmeRepository filmeRepository;
+    private final FilmeRepository filmeRepository;
+
+    public FilmeService(FilmeRepository filmeRepository) {
+        this.filmeRepository = filmeRepository;
+    }
 
 
     public List<Filme> getFilmes() {
         return this.filmeRepository.findAll();
     }
-
-   public Optional<Filme> findById(Long id){
-        return Optional.ofNullable(filmeRepository.findById(id).orElse(null));
-   }
 
     public List<Filme> getDetalhes() {
         return this.filmeRepository.findAll();
@@ -46,6 +45,10 @@ public class FilmeService {
 
     public List<Filme> buscarFavSemana(String opcao) {
         return this.filmeRepository.buscarFavSemana(opcao);
+    }
+
+    public Filme getFilmeById(Long id) {
+        return this.filmeRepository.findById(id).orElse(null);
     }
 }
 

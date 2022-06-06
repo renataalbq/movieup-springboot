@@ -17,9 +17,8 @@ public class FavoritosService {
     public List<Favoritos> getFavoritos() { return this.favoritosRepository.findAll();}
 
     @Transactional
-    public Favoritos inserir(Long idFilme) {
-        Favoritos fav = this.favoritosRepository.save(idFilme).orElse(null);;
-        return fav;
+    public Favoritos inserirFav(Favoritos favoritos) {
+        return favoritosRepository.save(favoritos);
     }
 
     public void apagar(Long id) {

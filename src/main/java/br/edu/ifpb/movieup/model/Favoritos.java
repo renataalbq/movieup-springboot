@@ -11,12 +11,10 @@ public class Favoritos {
     private String titulo;
     private String imagem;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_id_filme")
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Filme idFilme;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_id_serie")
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Serie idSerie;
 
     public Long getId() {
