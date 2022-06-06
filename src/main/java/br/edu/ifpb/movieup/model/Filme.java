@@ -1,6 +1,7 @@
 package br.edu.ifpb.movieup.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_filme")
@@ -21,6 +22,9 @@ public class Filme {
     private String aclamados;
     private String esperados;
     private String favsemana;
+
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    private List<Critica> criticas;
 
 
     public Long getId() {
@@ -104,5 +108,14 @@ public class Filme {
     public void setEsperados(String esperados) { this.esperados = esperados; }
     public String getFavsemana() { return favsemana;}
     public void setFavsemana(String favsemana) { this.favsemana = favsemana; }
+
+    public List<Critica> getCriticas() {
+        return criticas;
+    }
+
+    public void setCriticas(List<Critica> criticas) {
+        this.criticas = criticas;
+    }
+
 
 }

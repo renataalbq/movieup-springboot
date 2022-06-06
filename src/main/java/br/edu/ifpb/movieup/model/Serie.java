@@ -2,6 +2,7 @@ package br.edu.ifpb.movieup.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_serie")
@@ -21,6 +22,9 @@ public class Serie {
     private String emalta;
     private String vencedoras;
     private String lancamentos;
+
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    private List<Critica> criticas;
 
     public Long getId() {
         return id;
@@ -97,5 +101,13 @@ public class Serie {
     public void setVencedoras(String vencedoras) { this.vencedoras = vencedoras; }
 
     public String getLancamentos() { return lancamentos;}
-    public void setALancamentos(String lancamentos) { this.lancamentos = lancamentos; }
+    public void setLancamentos(String lancamentos) { this.lancamentos = lancamentos; }
+
+    public List<Critica> getCriticas() {
+        return criticas;
+    }
+
+    public void setCriticas(List<Critica> criticas) {
+        this.criticas = criticas;
+    }
 }

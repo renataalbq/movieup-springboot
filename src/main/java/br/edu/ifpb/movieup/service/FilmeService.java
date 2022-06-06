@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -14,7 +15,16 @@ public class FilmeService {
     @Autowired
     private FilmeRepository filmeRepository;
 
+
     public List<Filme> getFilmes() {
+        return this.filmeRepository.findAll();
+    }
+
+   public Optional<Filme> findById(Long id){
+        return Optional.ofNullable(filmeRepository.findById(id).orElse(null));
+   }
+
+    public List<Filme> getDetalhes() {
         return this.filmeRepository.findAll();
     }
 

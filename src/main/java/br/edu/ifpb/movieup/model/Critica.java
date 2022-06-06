@@ -12,6 +12,11 @@ public class Critica {
     private String nomeDaObra;
     private String nomeDoCritico;
 
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    private Filme filmeCriticado;
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    private Serie serieCriticada;
+
     public Long getId() {
         return id;
     }

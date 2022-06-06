@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class FilmeController {
@@ -23,6 +24,11 @@ public class FilmeController {
     @GetMapping("/detalhes")
     public List<Filme> getDetalhes() {
         return this.filmeService.getDetalhes();
+    }
+
+    @GetMapping("/filmes/id")
+    public  Optional<Filme> getById(Long id) {
+        return this.filmeService.findById(id);
     }
 
     @GetMapping("/filmes/emalta")
