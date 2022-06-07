@@ -48,7 +48,7 @@ public class FilmeService {
     }
 
     public Filme getFilmeById(Long id) {
-        return this.filmeRepository.findById(id).orElse(null);
+        return this.filmeRepository.findById(id).get();
     }
 }
 

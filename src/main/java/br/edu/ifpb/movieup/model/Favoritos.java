@@ -1,6 +1,7 @@
 package br.edu.ifpb.movieup.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_favoritos")
@@ -52,4 +53,6 @@ public class Favoritos {
     public void setIdSerie(Serie idSerie) {
         this.idSerie = idSerie;
     }
+
+
 }

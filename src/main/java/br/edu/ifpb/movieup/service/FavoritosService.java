@@ -17,7 +17,7 @@ public class FavoritosService {
     public List<Favoritos> getFavoritos() { return this.favoritosRepository.findAll();}
 
     @Transactional
-    public Favoritos inserirFav(Favoritos favoritos) {
+    public Favoritos inserir(Favoritos favoritos) {
         return favoritosRepository.save(favoritos);
     }
 
