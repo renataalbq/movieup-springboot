@@ -22,6 +22,7 @@ public class FilmeController {
         return this.filmeService.getFilmes();
     }
 
+
     @GetMapping("/detalhes")
     public List<Filme> getDetalhes() {
         return this.filmeService.getDetalhes();
@@ -29,8 +30,12 @@ public class FilmeController {
 
     @GetMapping("/{id}")
     public Filme getFilmeById(@PathVariable("id") Long id) {
-
         return this.filmeService.getFilmeById(id);
+    }
+
+    @GetMapping("/{titulo}")
+    public List<Filme> buscarFilme(@PathVariable("titulo") String titulo) {
+        return this.filmeService.buscarFilme(titulo);
     }
 
     @GetMapping("/emalta")

@@ -12,11 +12,8 @@ import java.util.Optional;
 @Service
 public class FilmeService {
 
-    private final FilmeRepository filmeRepository;
-
-    public FilmeService(FilmeRepository filmeRepository) {
-        this.filmeRepository = filmeRepository;
-    }
+    @Autowired
+    private FilmeRepository filmeRepository;
 
 
     public List<Filme> getFilmes() {
@@ -47,8 +44,17 @@ public class FilmeService {
         return this.filmeRepository.buscarFavSemana(opcao);
     }
 
+    public List<Filme> buscarFilme(String titulo) {
+        return this.filmeRepository.buscarFilme(titulo);
+    }
+
+
     public Filme getFilmeById(Long id) {
-        return this.filmeRepository.findById(id).orElse(null);
+        return this.filmeRepository.findById(id).get();
+    }
+
+    public Optional<Filme> findById(Long id){
+        return filmeRepository.findById(id);
     }
 }
 
