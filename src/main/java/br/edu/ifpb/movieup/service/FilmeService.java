@@ -48,13 +48,8 @@ public class FilmeService {
         return this.filmeRepository.buscarFilme(titulo);
     }
 
-
     public Filme getFilmeById(Long id) {
         return this.filmeRepository.findById(id).get();
-    }
-
-    public Optional<Filme> findById(Long id){
-        return filmeRepository.findById(id);
     }
 }
 

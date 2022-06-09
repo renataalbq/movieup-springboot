@@ -27,9 +27,9 @@ public class CriticaService {
     @Transactional
     public Critica inserirOuAtualizar(Critica critica, Filme filme) {
         Critica criticaInserida = this.criticaRepository.save(critica);
-        if (critica.getNomeDaObra() != filme.getTitulo()) {
-            throw new RuntimeException("Filme não consta");
-        }
+       // if (critica.getNomeDaObra() != filme.getTitulo()) {
+        //    throw new RuntimeException("Filme não consta");
+        //}
         return criticaInserida;
 
     }
