@@ -7,9 +7,7 @@ import br.edu.ifpb.movieup.service.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
@@ -40,6 +38,11 @@ public class SerieController {
     public ResponseEntity<List<Serie>> buscarLancamentos(String opcao){
         List <Serie> serie = serieService.buscarLancamentos(opcao);
         return new ResponseEntity<List<Serie>>(serie, HttpStatus.OK);
+    }
+
+    @RequestMapping(value= ("/titulo"), method = RequestMethod.GET)
+    public List<Serie> buscarSerie(@RequestParam("titulo") String titulo) {
+        return this.serieService.buscarSerie(titulo);
     }
 
 }

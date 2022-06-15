@@ -1,6 +1,7 @@
 package br.edu.ifpb.movieup.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_usuario")
@@ -11,7 +12,6 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    private String categoria;
 
     public Long getId() {
         return id;
@@ -40,15 +40,5 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-
 
 }

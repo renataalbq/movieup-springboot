@@ -1,6 +1,7 @@
 package br.edu.ifpb.movieup.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,8 +24,8 @@ public class Filme {
     private String esperados;
     private String favsemana;
 
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    private List<Critica> criticas;
+    @OneToMany(mappedBy = "filmeCriticado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Critica> criticas = new ArrayList<>();
 
 
     public Long getId() {
@@ -115,6 +116,10 @@ public class Filme {
 
     public void setCriticas(List<Critica> criticas) {
         this.criticas = criticas;
+    }
+
+    public void adicionarCritica(Critica critica) {
+        criticas.add(critica);
     }
 
 

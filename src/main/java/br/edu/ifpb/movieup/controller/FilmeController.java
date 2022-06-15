@@ -1,12 +1,16 @@
 package br.edu.ifpb.movieup.controller;
 
+import br.edu.ifpb.movieup.model.Critica;
 import br.edu.ifpb.movieup.model.Filme;
+import br.edu.ifpb.movieup.repositories.CriticaRepository;
+import br.edu.ifpb.movieup.repositories.FilmeRepository;
 import br.edu.ifpb.movieup.service.FilmeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +20,12 @@ public class FilmeController {
 
     @Autowired
     private FilmeService filmeService;
+
+    @Autowired
+    private FilmeRepository filmeRepository;
+
+    @Autowired
+    private CriticaRepository criticaRepository;
 
     @GetMapping
     public List<Filme> getFilmes() {
@@ -33,9 +43,39 @@ public class FilmeController {
         return this.filmeService.getFilmeById(id);
     }
 
-    @GetMapping("/{titulo}")
-    public List<Filme> buscarFilme(@PathVariable("titulo") String titulo) {
+    @RequestMapping(value= ("/titulo"), method = RequestMethod.GET)
+    public List<Filme> buscarFilme(@RequestParam("titulo") String titulo) {
         return this.filmeService.buscarFilme(titulo);
+    }
+
+    // Adicionar critica em filme
+    @PostMapping("/addcritica/{id}")
+    public ResponseEntity adicionarCritica(@PathVariable Long id, @RequestBody Critica critica){
+        return filmeRepository.findById(id).map(f -> {
+            critica.setFilmeCriticado(f);
+            f.adicionarCritica(critica);
+            criticaRepository.save(critica);
+            filmeRepository.save(f);
+            return ResponseEntity.ok().build();
+        }).orElse(ResponseEntity.notFound().build());
+    }
+
+    // Ler criticas de filme
+    @GetMapping( "/{id}/criticas")
+    public List<Critica> findById1(@PathVariable Long id) {
+        return filmeRepository.findById(id).get().getCriticas();
+    }
+
+    @GetMapping("/{id}/criticas/{idCritica}")
+    public List<Critica> findById2(@PathVariable Long id, @PathVariable Long idCritica) {
+        List<Critica> critica = filmeRepository.findById(id).get().getCriticas();
+        List<Critica> criticaRetornada = new ArrayList<>();
+        critica.forEach(c -> {
+            if (c.getId() == idCritica) {
+                criticaRetornada.add(c);
+            }
+        });
+        return criticaRetornada;
     }
 
     @GetMapping("/emalta")

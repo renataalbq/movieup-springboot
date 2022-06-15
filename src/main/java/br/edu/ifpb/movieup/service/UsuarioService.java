@@ -15,6 +15,7 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+
     public List<Usuario> getUsuarios() {
         return this.usuarioRepository.findAll();
     }
@@ -24,9 +25,13 @@ public class UsuarioService {
     }
 
     @Transactional
-    public Usuario inserirOuAtualizar(Usuario usuario) {
-        Usuario usuarioInserido = this.usuarioRepository.save(usuario);
-        return usuarioInserido;
+    public Usuario inserir(Usuario usuario) {
+        //Usuario existeUsuario = this.usuarioRepository.findByEmail(usuario.getEmail());
+        //if (existeUsuario != null){
+        //    throw new Error("Usuario já cadastrado");
+        //}
+        Usuario inserirUsuario = this.usuarioRepository.save(usuario);
+        return inserirUsuario;
     }
 
     public void apagar(Long id) {
