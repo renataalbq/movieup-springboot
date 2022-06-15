@@ -4,9 +4,11 @@ import br.edu.ifpb.movieup.model.Filme;
 import br.edu.ifpb.movieup.model.Serie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface SerieRepository extends JpaRepository<Serie, Long> {
     @Query(value = "SELECT s from Serie s where s.emalta='1' ")
     List<Serie> buscarEmAlta(String opcao);
@@ -16,5 +18,6 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
 
     @Query(value = "SELECT s from Serie s where s.lancamentos='1' ")
     List<Serie> buscarLancamentos(String opcao);
+
 
 }

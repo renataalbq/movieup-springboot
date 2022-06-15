@@ -12,9 +12,9 @@ public class Critica {
     private String nomeDaObra;
     private String nomeDoCritico;
 
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Filme filmeCriticado;
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Serie serieCriticada;
 
     public Long getId() {
@@ -43,5 +43,13 @@ public class Critica {
 
     public void setNomeDoCritico(String nomeDoCritico) {
         this.nomeDoCritico = nomeDoCritico;
+    }
+
+    public Filme getFilmeCriticado() {
+        return filmeCriticado;
+    }
+
+    public void setFilmeCriticado(Filme filmeCriticado) {
+        this.filmeCriticado = filmeCriticado;
     }
 }

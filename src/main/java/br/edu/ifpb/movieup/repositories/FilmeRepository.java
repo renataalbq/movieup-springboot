@@ -3,12 +3,14 @@ package br.edu.ifpb.movieup.repositories;
 import br.edu.ifpb.movieup.model.Filme;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface FilmeRepository  extends JpaRepository<Filme, Long> {
 
-    @Query(value = "SELECT f from Filme f where f.titulo=:titulo ")
+    @Query(value = "SELECT f from Filme f where f.titulo like %:titulo% ")
     List<Filme> buscarFilme(String titulo);
 
     @Query(value = "SELECT f from Filme f where f.emalta='1' ")
