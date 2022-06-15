@@ -19,5 +19,8 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
     @Query(value = "SELECT s from Serie s where s.lancamentos='1' ")
     List<Serie> buscarLancamentos(String opcao);
 
+    @Query(value = "SELECT s from Serie s where s.titulo like %:titulo% ")
+    List<Serie> buscarSerie(String titulo);
+
 
 }
