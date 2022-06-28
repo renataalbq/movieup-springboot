@@ -7,15 +7,18 @@ import javax.persistence.*;
 public class Critica {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
     private Long id;
     private String mensagem;
-    private String nomeDaObra;
     private String nomeDoCritico;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Filme filmeCriticado;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Serie serieCriticada;
+    @ManyToOne
+    @JoinColumn(name = "fk_filme_id")
+    private Filme filme;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_serie_id")
+    private Serie serie;
 
     public Long getId() {
         return id;
@@ -29,14 +32,6 @@ public class Critica {
         this.mensagem = mensagem;
     }
 
-    public String getNomeDaObra() {
-        return nomeDaObra;
-    }
-
-    public void setNomeDaObra(String nomeDaObra) {
-        this.nomeDaObra = nomeDaObra;
-    }
-
     public String getNomeDoCritico() {
         return nomeDoCritico;
     }
@@ -46,10 +41,10 @@ public class Critica {
     }
 
     public Filme getFilmeCriticado() {
-        return filmeCriticado;
+        return filme;
     }
 
-    public void setFilmeCriticado(Filme filmeCriticado) {
-        this.filmeCriticado = filmeCriticado;
+    public void setFilmeCriticado(Filme filme) {
+        this.filme = filme;
     }
 }

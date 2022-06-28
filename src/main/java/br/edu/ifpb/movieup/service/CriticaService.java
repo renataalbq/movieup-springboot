@@ -20,14 +20,16 @@ public class CriticaService {
         return this.criticaRepository.findAll();
     }
 
+    public List<Critica> getFilmeCriticado(Filme filme) {return this.criticaRepository.findByFilme(filme);}
+
     public Critica getCriticaPorId(Long idCritica) {
         return this.criticaRepository.findById(idCritica).orElse(null);
     }
 
+    public List<Critica> findCriticasByFilme(Long id){return this.criticaRepository.findCriticasByFilme(id);}
     @Transactional
-    public Critica inserir(Critica critica, Filme filme) {
+    public Critica inserir(Critica critica) {
         Critica criticaInserida = this.criticaRepository.save(critica);
-        //critica.setNomeDaObra(filme.getTitulo());
         return criticaInserida;
 
     }

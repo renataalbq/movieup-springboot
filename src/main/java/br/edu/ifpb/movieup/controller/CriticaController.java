@@ -15,19 +15,19 @@ public class CriticaController {
     @Autowired
     private CriticaService criticaService;
 
-    @Autowired
-    private CriticaRepository criticaRepository;
-
 
     @GetMapping("/criticas")
     public List<Critica> getCriticas() {
         return this.criticaService.getCriticas();
     }
 
-   // @PostMapping("/criticas")
-    //public Critica inserirCritica(@RequestBody Critica critica, Filme filmeCriticado){
-     //   return this.criticaService.inserir(critica, filmeCriticado);
-    //}
+    @GetMapping("/filmecriticado")
+    public List<Critica> FilmeCriticado(@RequestBody Filme filme){ return this.criticaService.getFilmeCriticado(filme);}
+
+   @PostMapping("/criticas")
+    public Critica inserirCritica(@RequestBody Critica critica){
+        return this.criticaService.inserir(critica);
+    }
 
     @DeleteMapping("/criticas/{id}")
     public void apagarCritica(@PathVariable("id") Long id) {
