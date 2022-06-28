@@ -32,12 +32,6 @@ public class FilmeController {
         return this.filmeService.getFilmes();
     }
 
-
-    @GetMapping("/detalhes")
-    public List<Filme> getDetalhes() {
-        return this.filmeService.getDetalhes();
-    }
-
     @GetMapping("/{id}")
     public Filme getFilmeById(@PathVariable("id") Long id) {
         return this.filmeService.getFilmeById(id);
@@ -49,15 +43,13 @@ public class FilmeController {
     }
 
     // Adicionar critica em filme
-    @PostMapping("/addcritica/{id}")
+    @PostMapping("/criticas/{id}")
     public ResponseEntity adicionarCritica(@PathVariable Long id, @RequestBody Critica critica){
-        return filmeRepository.findById(id).map(f -> {
-            critica.setFilmeCriticado(f);
-            f.adicionarCritica(critica);
-            criticaRepository.save(critica);
-            filmeRepository.save(f);
-            return ResponseEntity.ok().build();
-        }).orElse(ResponseEntity.notFound().build());
+        Optional<Filme> filmecriticado = filmeRepository.findById(id);
+        critica.setFilmeCriticado(filmecriticado.get());
+        criticaRepository.save(critica);
+        filmeRepository.save(filmecriticado.get());
+        return ResponseEntity.status(HttpStatus.CREATED).body("Critica adicionada");
     }
 
     // Ler criticas de filme
@@ -66,17 +58,6 @@ public class FilmeController {
         return filmeRepository.findById(id).get().getCriticas();
     }
 
-    @GetMapping("/{id}/criticas/{idCritica}")
-    public List<Critica> findById2(@PathVariable Long id, @PathVariable Long idCritica) {
-        List<Critica> critica = filmeRepository.findById(id).get().getCriticas();
-        List<Critica> criticaRetornada = new ArrayList<>();
-        critica.forEach(c -> {
-            if (c.getId() == idCritica) {
-                criticaRetornada.add(c);
-            }
-        });
-        return criticaRetornada;
-    }
 
     @GetMapping("/emalta")
     public ResponseEntity<List<Filme>> buscarEmAlta(String opcao){
