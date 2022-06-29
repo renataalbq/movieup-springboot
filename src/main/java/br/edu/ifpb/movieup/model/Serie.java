@@ -2,6 +2,7 @@ package br.edu.ifpb.movieup.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,8 +24,8 @@ public class Serie {
     private String vencedoras;
     private String lancamentos;
 
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    private List<Critica> criticas;
+    @OneToMany
+    private List<Critica> criticas = new ArrayList<>();
 
     public Long getId() {
         return id;

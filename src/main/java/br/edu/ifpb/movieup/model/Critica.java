@@ -12,13 +12,9 @@ public class Critica {
     private String mensagem;
     private String nomeDoCritico;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_filme_id")
-    private Filme filme;
+    private Long id_filme;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_serie_id")
-    private Serie serie;
+    private Long id_serie;
 
     public Long getId() {
         return id;
@@ -40,11 +36,19 @@ public class Critica {
         this.nomeDoCritico = nomeDoCritico;
     }
 
-    public Filme getFilmeCriticado() {
-        return filme;
+    public Long getId_filme() {
+        return id_filme;
     }
 
-    public void setFilmeCriticado(Filme filme) {
-        this.filme = filme;
+    public void setId_filme(Long id_filme) {
+        this.id_filme = id_filme;
+    }
+
+    public Long getId_serie() {
+        return id_serie;
+    }
+
+    public void setId_serie(Long id_serie) {
+        this.id_serie = id_serie;
     }
 }

@@ -24,12 +24,7 @@ public class Filme {
     private String esperados;
     private String favsemana;
 
-    @OneToMany(
-            mappedBy="filme",
-            cascade=CascadeType.PERSIST,
-
-            fetch=FetchType.LAZY
-    )
+    @OneToMany
     private List<Critica> criticas = new ArrayList<>();
 
 
