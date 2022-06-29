@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface CriticaRepository extends JpaRepository<Critica, Long> {
 
-    @Query(value = "SELECT c from Critica c where c.id_filme =:id")
+    @Query(value = "SELECT c from Critica c where c.id_filme = ?1")
     List<Critica> findCriticasByFilme(Long id);
 }

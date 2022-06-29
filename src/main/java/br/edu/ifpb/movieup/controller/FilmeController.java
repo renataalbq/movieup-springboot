@@ -47,18 +47,18 @@ public class FilmeController {
     }
 
     // Adicionar critica em filme
-    @PostMapping("/criticas/{id}")
-    public ResponseEntity adicionarCritica(@PathVariable Long id, @RequestBody Critica critica){
-        Optional<Filme> filmecriticado = filmeRepository.findById(id);
+    @PostMapping("/criticas/{id_filme}")
+    public ResponseEntity adicionarCritica(@PathVariable Long id_filme, @RequestBody Critica critica){
+        Optional<Filme> filmecriticado = filmeRepository.findById(id_filme);
         critica.setId_filme(filmecriticado.get().getId());
         criticaRepository.save(critica);
         return ResponseEntity.status(HttpStatus.OK).body("Critica adicionada");
     }
 
     // Ler criticas de filme
-    @GetMapping( "/{id}/criticas")
-    public List<Critica> findByIdFilme(@PathVariable Long id) {
-        return criticaRepository.findCriticasByFilme(id);
+    @GetMapping( "/{id_filme}/criticas")
+    public List<Critica> findByIdFilme(@PathVariable Long id_filme) {
+        return criticaRepository.findCriticasByFilme(id_filme);
     }
 
     @DeleteMapping("/{id_filme}/criticas/{id}")

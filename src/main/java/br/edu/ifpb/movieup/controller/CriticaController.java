@@ -26,6 +26,11 @@ public class CriticaController {
         return this.criticaService.inserir(critica);
     }
 
+    @PutMapping("/{id_filme}/criticas/{id}")
+    public Critica atualizar(@RequestBody Critica critica) {
+        return this.criticaService.inserir(critica);
+    }
+
     @DeleteMapping("/criticas/{id}")
     public void apagarCritica(@PathVariable("id") Long id) {
         this.criticaService.apagar(id);
