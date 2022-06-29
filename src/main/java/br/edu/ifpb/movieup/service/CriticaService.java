@@ -3,7 +3,10 @@ package br.edu.ifpb.movieup.service;
 import br.edu.ifpb.movieup.model.Critica;
 import br.edu.ifpb.movieup.model.Filme;
 import br.edu.ifpb.movieup.repositories.CriticaRepository;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +23,6 @@ public class CriticaService {
         return this.criticaRepository.findAll();
     }
 
-    public List<Critica> getFilmeCriticado(Filme filme) {return this.criticaRepository.findByFilme(filme);}
 
     public Critica getCriticaPorId(Long idCritica) {
         return this.criticaRepository.findById(idCritica).orElse(null);
@@ -35,6 +37,9 @@ public class CriticaService {
     }
 
     public void apagar(Long id) {
+        if(id == null){
+            ResponseEntity.status(HttpStatus.BAD_REQUEST);
+        }
         this.criticaRepository.deleteById(id);
     }
 }

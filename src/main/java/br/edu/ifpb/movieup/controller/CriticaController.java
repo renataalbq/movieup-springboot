@@ -21,9 +21,6 @@ public class CriticaController {
         return this.criticaService.getCriticas();
     }
 
-    @GetMapping("/filmecriticado")
-    public List<Critica> FilmeCriticado(@RequestBody Filme filme){ return this.criticaService.getFilmeCriticado(filme);}
-
    @PostMapping("/criticas")
     public Critica inserirCritica(@RequestBody Critica critica){
         return this.criticaService.inserir(critica);
