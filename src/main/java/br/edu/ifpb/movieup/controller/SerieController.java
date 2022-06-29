@@ -45,4 +45,5 @@ public class SerieController {
         return this.serieService.buscarSerie(titulo);
     }
 
+
 }

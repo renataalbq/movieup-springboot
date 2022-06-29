@@ -4,6 +4,7 @@ import br.edu.ifpb.movieup.model.Critica;
 import br.edu.ifpb.movieup.model.Filme;
 import br.edu.ifpb.movieup.repositories.CriticaRepository;
 import br.edu.ifpb.movieup.repositories.FilmeRepository;
+import br.edu.ifpb.movieup.service.CriticaService;
 import br.edu.ifpb.movieup.service.FilmeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,9 @@ public class FilmeController {
 
     @Autowired
     private FilmeService filmeService;
+
+    @Autowired
+    private CriticaService criticaService;
 
     @Autowired
     private FilmeRepository filmeRepository;
@@ -46,18 +50,21 @@ public class FilmeController {
     @PostMapping("/criticas/{id}")
     public ResponseEntity adicionarCritica(@PathVariable Long id, @RequestBody Critica critica){
         Optional<Filme> filmecriticado = filmeRepository.findById(id);
-        critica.setFilmeCriticado(filmecriticado.get());
+        critica.setId_filme(filmecriticado.get().getId());
         criticaRepository.save(critica);
-        filmeRepository.save(filmecriticado.get());
-        return ResponseEntity.status(HttpStatus.CREATED).body("Critica adicionada");
+        return ResponseEntity.status(HttpStatus.OK).body("Critica adicionada");
     }
 
     // Ler criticas de filme
     @GetMapping( "/{id}/criticas")
-    public List<Critica> findById1(@PathVariable Long id) {
-        return filmeRepository.findById(id).get().getCriticas();
+    public List<Critica> findByIdFilme(@PathVariable Long id) {
+        return criticaRepository.findCriticasByFilme(id);
     }
 
+    @DeleteMapping("/{id_filme}/criticas/{id}")
+    public void apagarCritica(@PathVariable("id_filme") Long id_filme, @PathVariable("id") Long id) {
+        this.criticaService.apagar(id);
+    }
 
     @GetMapping("/emalta")
     public ResponseEntity<List<Filme>> buscarEmAlta(String opcao){

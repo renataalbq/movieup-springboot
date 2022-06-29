@@ -35,7 +35,7 @@ public class FilmeService {
         // percorre a lista de filmes
         for(Filme filme : listaFilmes){
             List<Critica> criticas = new ArrayList<>();
-            criticas.addAll(criticaRepository.findCriticasByFilme(filme.getId())); //adiciona as criticas pegando pelo id do filme
+            criticas.addAll(criticaRepository.findCriticasByFilme(filme.getId())); //adiciona as criticas pelo id do filme
             filme.setCriticas(criticas);
             listaFilmesRetorno.add(filme); // monta o filme com as criticas especificas
         }
