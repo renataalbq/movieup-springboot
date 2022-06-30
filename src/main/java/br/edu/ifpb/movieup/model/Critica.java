@@ -6,16 +6,15 @@ import javax.persistence.*;
 @Table(name = "tb_critica")
 public class Critica {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
     private Long id;
     private String mensagem;
-    private String nomeDaObra;
     private String nomeDoCritico;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Filme filmeCriticado;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Serie serieCriticada;
+    private Long id_filme;
+
+    private Long id_serie;
 
     public Long getId() {
         return id;
@@ -29,14 +28,6 @@ public class Critica {
         this.mensagem = mensagem;
     }
 
-    public String getNomeDaObra() {
-        return nomeDaObra;
-    }
-
-    public void setNomeDaObra(String nomeDaObra) {
-        this.nomeDaObra = nomeDaObra;
-    }
-
     public String getNomeDoCritico() {
         return nomeDoCritico;
     }
@@ -45,11 +36,19 @@ public class Critica {
         this.nomeDoCritico = nomeDoCritico;
     }
 
-    public Filme getFilmeCriticado() {
-        return filmeCriticado;
+    public Long getId_filme() {
+        return id_filme;
     }
 
-    public void setFilmeCriticado(Filme filmeCriticado) {
-        this.filmeCriticado = filmeCriticado;
+    public void setId_filme(Long id_filme) {
+        this.id_filme = id_filme;
+    }
+
+    public Long getId_serie() {
+        return id_serie;
+    }
+
+    public void setId_serie(Long id_serie) {
+        this.id_serie = id_serie;
     }
 }

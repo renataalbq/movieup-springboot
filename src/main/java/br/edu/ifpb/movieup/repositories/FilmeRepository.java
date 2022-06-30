@@ -27,3 +27,6 @@ public interface FilmeRepository  extends JpaRepository<Filme, Long> {
     @Query(value = "SELECT f from Filme f where f.favsemana='1' ")
     List<Filme> buscarFavSemana(String opcao);
     }
+
+
+
