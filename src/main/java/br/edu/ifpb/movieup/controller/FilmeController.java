@@ -49,9 +49,8 @@ public class FilmeController {
     // Adicionar critica em filme
     @PostMapping("/criticas/{id_filme}")
     public ResponseEntity adicionarCritica(@PathVariable Long id_filme, @RequestBody Critica critica){
-        Optional<Filme> filmecriticado = filmeRepository.findById(id_filme);
-        critica.setId_filme(filmecriticado.get().getId());
-        criticaRepository.save(critica);
+
+        filmeService.acrescentarCritica(critica, id_filme);
         return ResponseEntity.status(HttpStatus.OK).body("Critica adicionada");
     }
 

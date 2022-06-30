@@ -6,6 +6,7 @@ import br.edu.ifpb.movieup.repositories.CriticaRepository;
 import br.edu.ifpb.movieup.repositories.FilmeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,25 +23,34 @@ public class FilmeService {
     private CriticaRepository criticaRepository;
 
 
-    //public List<Filme> getFilmes() {
-    //    return this.filmeRepository.findAll();
-    //}
-
     public List<Filme> getFilmes() {
-        List<Filme> listaFilmes = new ArrayList<>();
-
-        List<Filme> listaFilmesRetorno = new ArrayList<>();
-
-        listaFilmes.addAll(filmeRepository.findAll()); // adiciona todos os filmes em uma lista
-        // percorre a lista de filmes
-        for(Filme filme : listaFilmes){
-            List<Critica> criticas = new ArrayList<>();
-            criticas.addAll(criticaRepository.findCriticasByFilme(filme.getId())); //adiciona as criticas pelo id do filme
-            filme.setCriticas(criticas);
-            listaFilmesRetorno.add(filme); // monta o filme com as criticas especificas
-        }
-        return listaFilmesRetorno;
+        return this.filmeRepository.findAll();
     }
+
+    @Transactional
+    public void acrescentarCritica(Critica critica, Long idFilme){
+        Optional<Filme> filmecriticado = filmeRepository.findById(idFilme);
+        if(filmecriticado.isPresent()){
+            filmecriticado.get().adicionarCritica(critica);
+            critica.setFilme(filmecriticado.get());
+        }
+    }
+
+    //public List<Filme> getFilmes() {
+    // List<Filme> listaFilmes = new ArrayList<>();
+
+    //  List<Filme> listaFilmesRetorno = new ArrayList<>();
+
+    //  listaFilmes.addAll(filmeRepository.findAll()); // adiciona todos os filmes em uma lista
+        // percorre a lista de filmes
+    //  for(Filme filme : listaFilmes){
+    //      List<Critica> criticas = new ArrayList<>();
+    //      criticas.addAll(criticaRepository.findCriticasByFilme(filme.getId())); //adiciona as criticas pelo id do filme
+    //      filme.setCriticas(criticas);
+    //      listaFilmesRetorno.add(filme); // monta o filme com as criticas especificas
+    //  }
+    //  return listaFilmesRetorno;
+    //}
 
     public Filme getFilmeById(Long id) {
         List<Critica> criticas = new ArrayList<>();

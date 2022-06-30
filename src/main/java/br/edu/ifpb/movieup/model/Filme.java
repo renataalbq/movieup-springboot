@@ -24,7 +24,7 @@ public class Filme {
     private String esperados;
     private String favsemana;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "filme")
     private List<Critica> criticas = new ArrayList<>();
 
 
