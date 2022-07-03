@@ -31,9 +31,9 @@ public class CriticaController {
         return this.criticaService.inserir(critica);
     }
 
-    @DeleteMapping("/criticas/{id}")
-    public void apagarCritica(@PathVariable("id") Long id) {
-        this.criticaService.apagar(id);
-    }
+    //@DeleteMapping("/criticas/{id}")
+    //public void apagarCritica(@PathVariable("id") Long id) {
+    //    this.criticaService.apagar(id);
+    //}
 }
 

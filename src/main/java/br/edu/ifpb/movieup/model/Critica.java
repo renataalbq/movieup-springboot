@@ -1,20 +1,22 @@
 package br.edu.ifpb.movieup.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "tb_critica")
 public class Critica {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
     private String mensagem;
     private String nomeDoCritico;
 
-    private Long id_filme;
-
-    private Long id_serie;
+    @ManyToOne
+    @JsonBackReference
+    private Filme filme;
 
     public Long getId() {
         return id;
@@ -22,6 +24,14 @@ public class Critica {
 
     public String getMensagem() {
         return mensagem;
+    }
+
+    public Filme getFilme() {
+        return filme;
+    }
+
+    public void setFilme(Filme filme) {
+        this.filme = filme;
     }
 
     public void setMensagem(String mensagem) {
@@ -36,19 +46,7 @@ public class Critica {
         this.nomeDoCritico = nomeDoCritico;
     }
 
-    public Long getId_filme() {
-        return id_filme;
-    }
-
-    public void setId_filme(Long id_filme) {
-        this.id_filme = id_filme;
-    }
-
-    public Long getId_serie() {
-        return id_serie;
-    }
-
-    public void setId_serie(Long id_serie) {
-        this.id_serie = id_serie;
+    public void setId(Long id) {
+        this.id = id;
     }
 }

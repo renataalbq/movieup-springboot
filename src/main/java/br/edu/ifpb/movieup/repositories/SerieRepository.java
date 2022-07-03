@@ -1,5 +1,6 @@
 package br.edu.ifpb.movieup.repositories;
 
+import br.edu.ifpb.movieup.model.Critica;
 import br.edu.ifpb.movieup.model.Filme;
 import br.edu.ifpb.movieup.model.Serie;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,6 +22,5 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
 
     @Query(value = "SELECT s from Serie s where s.titulo like %:titulo% ")
     List<Serie> buscarSerie(String titulo);
-
 
 }
