@@ -29,36 +29,28 @@ public class FilmeService {
 
     @Transactional
     public void acrescentarCritica(Critica critica, Long idFilme){
-        Optional<Filme> filmecriticado = filmeRepository.findById(idFilme);
-        if(filmecriticado.isPresent()){
-            filmecriticado.get().adicionarCritica(critica);
-            critica.setFilme(filmecriticado.get());
+        Optional<Filme> filmeCriticado = filmeRepository.findById(idFilme);
+        if(filmeCriticado.isPresent()){
+            filmeCriticado.get().adicionarCritica(critica);
+            critica.setFilme(filmeCriticado.get());
         }
     }
 
-    //public List<Filme> getFilmes() {
-    // List<Filme> listaFilmes = new ArrayList<>();
+    public void apagarCritica(Long id){
+        this.criticaRepository.deleteById(id);
+    }
 
-    //  List<Filme> listaFilmesRetorno = new ArrayList<>();
-
-    //  listaFilmes.addAll(filmeRepository.findAll()); // adiciona todos os filmes em uma lista
-        // percorre a lista de filmes
-    //  for(Filme filme : listaFilmes){
-    //      List<Critica> criticas = new ArrayList<>();
-    //      criticas.addAll(criticaRepository.findCriticasByFilme(filme.getId())); //adiciona as criticas pelo id do filme
-    //      filme.setCriticas(criticas);
-    //      listaFilmesRetorno.add(filme); // monta o filme com as criticas especificas
-    //  }
-    //  return listaFilmesRetorno;
-    //}
 
     public Filme getFilmeById(Long id) {
-        List<Critica> criticas = new ArrayList<>();
-        Filme filme = filmeRepository.findById(id).get();
-        criticas.addAll(criticaRepository.findCriticasByFilme(filme.getId()));
-        filme.setCriticas(criticas); // adiciona criticas em filme
-        return filme;
+//        List<Critica> criticas = new ArrayList<>();
+  //      Filme filme = filmeRepository.findById(id).get();
+ //       criticas.addAll(criticaRepository.findCriticasByFilme(filme.getId()));
+  //      filme.setCriticas(criticas); // adiciona criticas em filme
+  //      return filme;
+        return this.filmeRepository.findById(id).orElse(null);
     }
+
+    //;
 
     public List<Filme> buscarEmAlta(String opcao) {
         return this.filmeRepository.buscarEmAlta(opcao);
@@ -83,6 +75,9 @@ public class FilmeService {
     public List<Filme> buscarFilme(String titulo) {
         return this.filmeRepository.buscarFilme(titulo);
     }
+
+
+
 
 
 }

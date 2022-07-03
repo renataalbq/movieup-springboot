@@ -60,9 +60,31 @@ public class FilmeController {
         return criticaRepository.findCriticasByFilme(id_filme);
     }
 
-    @DeleteMapping("/{id_filme}/criticas/{id}")
-    public void apagarCritica(@PathVariable("id_filme") Long id_filme, @PathVariable("id") Long id) {
-        this.criticaService.apagar(id);
+    // atualizar critica
+    @PutMapping("/criticas/{id}")
+    public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody Critica critica){
+
+        Optional<Critica> criticaOptional = this.criticaRepository.findById(id);
+        if (!criticaOptional.isPresent()){
+            return ResponseEntity.notFound().build();
+
+        }
+        Critica criticaAtualizada = criticaRepository.save(critica);
+        return ResponseEntity.ok().body(criticaAtualizada);
+
+    }
+
+    // deletar critica
+    @DeleteMapping("/criticas/{id}")
+    public  ResponseEntity deleteCritica(@PathVariable("id") Long id) {
+
+        Optional<Critica> criticaOptional = this.criticaRepository.findById(id);
+        if (!criticaOptional.isPresent()) {
+            return ResponseEntity.notFound().build();
+
+        }
+        this.filmeService.apagarCritica(id);
+        return ResponseEntity.ok("Critica deletada!");
     }
 
     @GetMapping("/emalta")
