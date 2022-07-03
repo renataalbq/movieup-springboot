@@ -19,13 +19,9 @@ public class Serie {
     private String diretor;
     private String atores;
     private Integer temporadas;
-
     private String emalta;
     private String vencedoras;
     private String lancamentos;
-
-    @OneToMany
-    private List<Critica> criticas = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -104,11 +100,4 @@ public class Serie {
     public String getLancamentos() { return lancamentos;}
     public void setLancamentos(String lancamentos) { this.lancamentos = lancamentos; }
 
-    public List<Critica> getCriticas() {
-        return criticas;
-    }
-
-    public void setCriticas(List<Critica> criticas) {
-        this.criticas = criticas;
-    }
 }

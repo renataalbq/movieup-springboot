@@ -1,5 +1,7 @@
 package br.edu.ifpb.movieup.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,9 +15,8 @@ public class Critica {
     private String nomeDoCritico;
 
     @ManyToOne
+    @JsonBackReference
     private Filme filme;
-
-
 
     public Long getId() {
         return id;
@@ -45,5 +46,7 @@ public class Critica {
         this.nomeDoCritico = nomeDoCritico;
     }
 
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

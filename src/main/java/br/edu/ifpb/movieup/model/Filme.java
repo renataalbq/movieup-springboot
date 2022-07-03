@@ -1,5 +1,7 @@
 package br.edu.ifpb.movieup.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,7 @@ public class Filme {
     private String favsemana;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "filme")
+    @JsonManagedReference
     private List<Critica> criticas = new ArrayList<>();
 
 
@@ -121,6 +124,7 @@ public class Filme {
     public void adicionarCritica(Critica critica) {
         criticas.add(critica);
     }
+
 
 
 }
