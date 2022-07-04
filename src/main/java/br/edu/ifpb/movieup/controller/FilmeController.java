@@ -23,12 +23,6 @@ public class FilmeController {
     private FilmeService filmeService;
 
     @Autowired
-    private CriticaService criticaService;
-
-    @Autowired
-    private FilmeRepository filmeRepository;
-
-    @Autowired
     private CriticaRepository criticaRepository;
 
     @GetMapping
@@ -46,18 +40,18 @@ public class FilmeController {
         return this.filmeService.buscarFilme(titulo);
     }
 
+    // Ler criticas de filme
+    @GetMapping( "/{id_filme}/criticas")
+    public List<Critica> findByIdFilme(@PathVariable Long id_filme) {
+        return criticaRepository.findCriticasByFilme(id_filme);
+    }
+
     // Adicionar critica em filme
     @PostMapping("/criticas/{id_filme}")
     public ResponseEntity adicionarCritica(@PathVariable Long id_filme, @RequestBody Critica critica){
 
         filmeService.acrescentarCritica(critica, id_filme);
         return ResponseEntity.status(HttpStatus.OK).body("Critica adicionada");
-    }
-
-    // Ler criticas de filme
-    @GetMapping( "/{id_filme}/criticas")
-    public List<Critica> findByIdFilme(@PathVariable Long id_filme) {
-        return criticaRepository.findCriticasByFilme(id_filme);
     }
 
     // atualizar critica
@@ -67,10 +61,9 @@ public class FilmeController {
         Optional<Critica> criticaOptional = this.criticaRepository.findById(id);
         if (!criticaOptional.isPresent()){
             return ResponseEntity.notFound().build();
-
         }
-        Critica criticaAtualizada = criticaRepository.save(critica);
-        return ResponseEntity.ok().body(criticaAtualizada);
+        this.filmeService.atualizarCritica(critica.getMensagem(), critica.getNomeDoCritico(), id);
+        return ResponseEntity.ok().body("critica Atualizada");
 
     }
 
