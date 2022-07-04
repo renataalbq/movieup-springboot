@@ -14,6 +14,8 @@ public class Filme {
     private Long id;
     private String titulo;
     private String imagem;
+
+    private String imagemhr;
     private Integer dataLancamento;
     private String sinopse;
     private String genero;
@@ -57,6 +59,14 @@ public class Filme {
 
     public void setImagem(String imagem) {
         this.imagem = imagem;
+    }
+
+    public String getImagemhr() {
+        return imagemhr;
+    }
+
+    public void setImagemhr(String imagemhr) {
+        this.imagemhr = imagemhr;
     }
 
     public String getSinopse() {

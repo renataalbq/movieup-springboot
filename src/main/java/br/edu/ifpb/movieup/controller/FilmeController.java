@@ -35,7 +35,7 @@ public class FilmeController {
         return this.filmeService.getFilmeById(id);
     }
 
-    @RequestMapping(value= ("/titulo"), method = RequestMethod.GET)
+    @GetMapping("/titulo")
     public List<Filme> buscarFilme(@RequestParam("titulo") String titulo) {
         return this.filmeService.buscarFilme(titulo);
     }
@@ -63,7 +63,7 @@ public class FilmeController {
             return ResponseEntity.notFound().build();
         }
         this.filmeService.atualizarCritica(critica.getMensagem(), critica.getNomeDoCritico(), id);
-        return ResponseEntity.ok().body("critica Atualizada");
+        return ResponseEntity.ok().body("Critica Atualizada");
 
     }
 

@@ -23,6 +23,12 @@ public class SerieController {
         return this.serieService.getSeries();
     }
 
+
+    @GetMapping("/titulo")
+    public List<Serie> buscarSerie(@RequestParam("titulo") String titulo) {
+        return this.serieService.buscarSerie(titulo);
+    }
+
     @GetMapping("/emalta")
     public ResponseEntity<List<Serie>> buscarEmAlta(String opcao){
         List <Serie> serie = serieService.buscarEmAlta(opcao);
@@ -40,10 +46,6 @@ public class SerieController {
         return new ResponseEntity<List<Serie>>(serie, HttpStatus.OK);
     }
 
-    @RequestMapping(value= ("/titulo"), method = RequestMethod.GET)
-    public List<Serie> buscarSerie(@RequestParam("titulo") String titulo) {
-        return this.serieService.buscarSerie(titulo);
-    }
 
 
 }
