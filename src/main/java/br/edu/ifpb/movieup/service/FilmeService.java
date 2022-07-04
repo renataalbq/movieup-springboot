@@ -35,18 +35,20 @@ public class FilmeService {
             critica.setFilme(filmeCriticado.get());
         }
     }
-
+    @Transactional
     public void apagarCritica(Long id){
-        this.criticaRepository.deleteById(id);
+        this.criticaRepository.deleteCriticaById(id);
+    }
+
+    @Transactional
+    public void atualizarCritica(String mensagem, String nomeDoCritico, Long id){
+
+        this.criticaRepository.updateCritica(mensagem, nomeDoCritico, id);
+
     }
 
 
     public Filme getFilmeById(Long id) {
-//        List<Critica> criticas = new ArrayList<>();
-  //      Filme filme = filmeRepository.findById(id).get();
- //       criticas.addAll(criticaRepository.findCriticasByFilme(filme.getId()));
-  //      filme.setCriticas(criticas); // adiciona criticas em filme
-  //      return filme;
         return this.filmeRepository.findById(id).orElse(null);
     }
 

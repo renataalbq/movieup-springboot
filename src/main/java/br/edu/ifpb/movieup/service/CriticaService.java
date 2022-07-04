@@ -33,8 +33,6 @@ public class CriticaService {
         return criticaInserida;
     }
 
-    //public void apagar(Long id) {
-    //    this.criticaRepository.delete(id);
-    //}
+
 
 }
