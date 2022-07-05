@@ -51,7 +51,7 @@ public class FilmeController {
     public ResponseEntity adicionarCritica(@PathVariable Long id_filme, @RequestBody Critica critica){
 
         filmeService.acrescentarCritica(critica, id_filme);
-        return ResponseEntity.status(HttpStatus.OK).body("Critica adicionada");
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
     // atualizar critica
@@ -63,7 +63,7 @@ public class FilmeController {
             return ResponseEntity.notFound().build();
         }
         this.filmeService.atualizarCritica(critica.getMensagem(), critica.getNomeDoCritico(), id);
-        return ResponseEntity.ok().body("Critica Atualizada");
+        return ResponseEntity.ok().body(null);
 
     }
 
@@ -77,7 +77,7 @@ public class FilmeController {
 
         }
         this.filmeService.apagarCritica(id);
-        return ResponseEntity.ok("Critica deletada!");
+        return ResponseEntity.ok(null);
     }
 
     @GetMapping("/emalta")
