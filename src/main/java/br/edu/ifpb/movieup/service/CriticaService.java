@@ -4,7 +4,6 @@ import br.edu.ifpb.movieup.model.Critica;
 import br.edu.ifpb.movieup.repositories.CriticaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,19 +19,10 @@ public class CriticaService {
         return this.criticaRepository.findAll();
     }
 
-
     public Optional<Critica> findById(Long id) {
         return criticaRepository.findById(id);
     }
 
     public List<Critica> findCriticasByFilme(Long id){return this.criticaRepository.findCriticasByFilme(id);}
-
-    @Transactional
-    public Critica inserir(Critica critica) {
-        Critica criticaInserida = this.criticaRepository.save(critica);
-        return criticaInserida;
-    }
-
-
 
 }

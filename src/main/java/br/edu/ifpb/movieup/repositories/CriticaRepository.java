@@ -20,8 +20,7 @@ public interface CriticaRepository extends JpaRepository<Critica, Long> {
     void deleteCriticaById(Long id);
 
 
-    @Transactional
-    @Modifying
+    @Modifying //é usada sempre que escrevemos uma consulta JPQL para modificar os registros
     @Query("UPDATE Critica SET mensagem =?1, nomeDoCritico =?2 WHERE id =?3")
     void updateCritica(String mensagem, String nomeDoCritico, Long id);
 
